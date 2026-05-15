@@ -5,14 +5,14 @@
 #define ASCENDING 1
 #define DESCENDING 0
 
-// Swap two integers
+// Troca dois inteiros
 void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-// Compare and swap according to direction
+// Compara e troca conforme a direção
 void compareAndSwap(int arr[], int i, int j, int dir) {
     if ((dir == ASCENDING && arr[i] > arr[j]) ||
         (dir == DESCENDING && arr[i] < arr[j])) {
@@ -20,7 +20,7 @@ void compareAndSwap(int arr[], int i, int j, int dir) {
     }
 }
 
-// Merge bitonic sequence into sorted sequence
+// Funde sequência bitônica em sequência ordenada
 void bitonicMerge(int arr[], int low, int cnt, int dir) {
     if (cnt > 1) {
         int k = cnt / 2;
@@ -32,20 +32,20 @@ void bitonicMerge(int arr[], int low, int cnt, int dir) {
     }
 }
 
-// Recursively build bitonic sequence and sort
+// Constrói recursivamente sequência bitônica e ordena
 void bitonicSort(int arr[], int low, int cnt, int dir) {
     if (cnt > 1) {
         int k = cnt / 2;
-        // Sort first half in ascending order
+        // Ordena a primeira metade em ordem crescente
         bitonicSort(arr, low, k, ASCENDING);
-        // Sort second half in descending order
+        // Ordena a segunda metade em ordem decrescente
         bitonicSort(arr, low + k, k, DESCENDING);
-        // Merge the whole sequence in given direction
+        // Funde a sequência inteira na direção indicada
         bitonicMerge(arr, low, cnt, dir);
     }
 }
 
-// Utility function to print array
+// Função auxiliar para imprimir o vetor
 void printArray(int arr[], int n) {
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
@@ -53,7 +53,7 @@ void printArray(int arr[], int n) {
     printf("\n");
 }
 
-// Check if n is a power of two (Bitonic sort works best with sizes that are powers of 2)
+// Verifica se n é potência de dois (ordenação bitônica exige tamanho potência de 2)
 bool isPowerOfTwo(int n) {
     return (n > 0) && ((n & (n - 1)) == 0);
 }
@@ -90,7 +90,7 @@ int main() {
     printf("Original array:\n");
     printArray(arr, n);
 
-    // Sort in ascending order
+    // Ordena em ordem crescente
     bitonicSort(arr, 0, n, ASCENDING);
 
     printf("Sorted array (Ascending):\n");
